@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karthikeya — Full-Stack & AI Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf9f7;
+      --ink: #1a1a18;
+      --muted: #6b6b65;
+      --accent: #2d5a27;
+      --accent-light: #e8f0e7;
+      --border: #e0ddd8;
+      --tag-bg: #f0ede8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 0 0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 56px;
+    }
+
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    /* ── HERO ── */
+    .hero { margin-bottom: 64px; }
+
+    .hero h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .hero .tagline {
+      font-size: 17px;
+      color: var(--muted);
+      margin-bottom: 24px;
+      max-width: 560px;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    .contact-row a {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .contact-row a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── SECTION ── */
+    section { margin-bottom: 64px; }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── EDUCATION ── */
+    .edu-block { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+    .edu-block h3 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
+    .edu-block .degree { font-size: 14px; color: var(--muted); }
+    .edu-meta { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); text-align: right; white-space: nowrap; }
+    .cgpa { font-weight: 500; color: var(--accent); }
+
+    /* ── EXPERIENCE ── */
+    .exp-block { margin-bottom: 32px; }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin-bottom: 6px; }
+    .exp-header h3 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; }
+    .exp-org { font-size: 14px; color: var(--muted); margin-bottom: 12px; }
+    .exp-date { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--muted); white-space: nowrap; text-align: right; }
+
+    ul.bullets { list-style: none; padding: 0; }
+    ul.bullets li {
+      font-size: 14.5px;
+      color: #3a3a36;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    ul.bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--border);
+      font-weight: 300;
+    }
+
+    /* ── PROJECTS ── */
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fff;
+    }
+    .project-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 2px 16px rgba(45,90,39,0.07);
+    }
+
+    .project-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+    .project-header h3 {
+      font-family: 'Lora', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+    .project-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      padding-top: 3px;
+    }
+
+    .project-stack {
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .project-desc { font-size: 14px; color: #3a3a36; }
+    .project-desc p { margin-bottom: 6px; }
+    .project-desc p:last-child { margin-bottom: 0; }
+
+    .project-link {
+      display: inline-block;
+      margin-top: 12px;
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-light);
+      transition: border-color 0.2s;
+    }
+    .project-link:hover { border-color: var(--accent); }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: 120px 1fr; gap: 12px 20px; }
+    .skill-cat {
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      color: var(--muted);
+      padding-top: 3px;
+    }
+    .skill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 9px;
+      font-size: 12.5px;
+      color: var(--ink);
+    }
+
+    /* ── CERTIFICATIONS ── */
+    .cert-list { list-style: none; }
+    .cert-list li {
+      font-size: 14.5px;
+      color: #3a3a36;
+      padding-left: 18px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+    .cert-list li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      font-size: 9px;
+      color: var(--accent);
+      top: 5px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    /* ── FADE IN ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero        { animation: fadeUp 0.6s ease both; }
+    section      { animation: fadeUp 0.6s ease both; }
+    section:nth-of-type(1) { animation-delay: 0.1s; }
+    section:nth-of-type(2) { animation-delay: 0.18s; }
+    section:nth-of-type(3) { animation-delay: 0.26s; }
+    section:nth-of-type(4) { animation-delay: 0.34s; }
+    section:nth-of-type(5) { animation-delay: 0.42s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 520px) {
+      .edu-block, .exp-header, .project-header { flex-direction: column; }
+      .edu-meta, .exp-date { text-align: left; }
+      .skills-grid { grid-template-columns: 1fr; gap: 4px; }
+      .skill-cat { margin-top: 8px; }
+      nav { flex-direction: column; align-items: flex-start; gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">karthikeya.dev</a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="mailto:karthikeyaofficial10@gmail.com">Email</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Medikonduru Manikanta Karthikeya</h1>
+    <p class="tagline">
+      Full-stack developer &amp; AI engineer. I build real-world applications,
+      LLM-powered systems, and semantic search tools. Currently pursuing B.Tech
+      at VIT Vellore.
+    </p>
+    <div class="contact-row">
+      <span>+91 73965 04760</span>
+      <a href="mailto:karthikeyaofficial10@gmail.com">karthikeyaofficial10@gmail.com</a>
+      <a href="https://linkedin.com/in/karthikeya182005" target="_blank">linkedin</a>
+      <a href="https://github.com/bunny182005" target="_blank">github</a>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-label">Education</div>
+    <div class="edu-block">
+      <div>
+        <h3>Vellore Institute of Technology, Vellore</h3>
+        <p class="degree">B.Tech in Computer Science and Engineering</p>
+      </div>
+      <div class="edu-meta">
+        <div>Expected May 2027</div>
+        <div class="cgpa">CGPA 8.6 / 10.0</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Experience</div>
+    <div class="exp-block">
+      <div class="exp-header">
+        <h3>Technical Head</h3>
+        <span class="exp-date">Apr 2024 – Present</span>
+      </div>
+      <div class="exp-org">IEEE Professional Communication Society (IEEE-PCS), VIT Vellore</div>
+      <ul class="bullets">
+        <li>Architected digital infrastructure for 100+ members using Firebase, GitHub Actions, and CI/CD pipelines — reduced operational overhead by 40%.</li>
+        <li>Built real-time analytics dashboards and automated event workflows, increasing member engagement by 15% and maintaining 99.9% uptime across 10+ events.</li>
+        <li>Led a 6-member engineering team enforcing modular architecture, Git-based version control, and production-grade code review standards.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Projects</div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3>OptiMatch — AI-Powered Resume Analyzer &amp; ATS Scoring</h3>
+        <span class="project-year">2026</span>
+      </div>
+      <div class="project-stack">React · Vite · FastAPI · OpenAI · NLP · Docker</div>
+      <div class="project-desc">
+        <p>Full-stack ATS scoring platform delivering resume-to-JD matching with 0–100 compatibility scores and real-time skill gap analysis.</p>
+        <p>Integrated OpenAI LLMs into a semantic matching pipeline, improving keyword-only matching accuracy by 40% through contextual NLP similarity. Sub-2s response times, containerized with Docker.</p>
+      </div>
+      <a class="project-link" href="https://github.com/bunny182005" target="_blank">github ↗</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3>SemantiCache — Fuzzy Semantic Search Engine</h3>
+        <span class="project-year">2026</span>
+      </div>
+      <div class="project-stack">Python · FastAPI · ChromaDB · Sentence-Transformers · Docker</div>
+      <div class="project-desc">
+        <p>Semantic search system over 20,000+ documents achieving sub-5ms cached retrieval — a 95% latency reduction over naive search.</p>
+        <p>Designed a semantic caching layer with Fuzzy C-Means cluster-aware indexing, reducing search complexity from O(n) to O(n/k) (~20× speedup). Deployed with a Streamlit dashboard.</p>
+      </div>
+      <a class="project-link" href="https://github.com/bunny182005" target="_blank">github ↗</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3>IntelliSQL — Natural Language to SQL Engine</h3>
+        <span class="project-year">2025</span>
+      </div>
+      <div class="project-stack">Python · Streamlit · Google Gemini 1.5 Flash · SQLite</div>
+      <div class="project-desc">
+        <p>AI-powered text-to-SQL assistant using Gemini 1.5 Flash, translating natural language into executable SQL and reducing manual query effort by ~90%.</p>
+        <p>Engineered a schema-aware prompt pipeline with few-shot examples and real-time query execution via an interactive Streamlit interface.</p>
+      </div>
+      <a class="project-link" href="https://github.com/bunny182005" target="_blank">github ↗</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <h3>Potternova — Gamified Real-Time Event Platform</h3>
+        <span class="project-year">2025</span>
+      </div>
+      <div class="project-stack">React · Firebase · Firestore · Firebase Auth</div>
+      <div class="project-desc">
+        <p>Real-time team competition platform for 200+ participants across 5 rounds with live leaderboards via Firebase Firestore.</p>
+        <p>Implemented Firebase Auth, team workflows, and responsive UI — achieved 95% participant retention through the final round.</p>
+      </div>
+      <a class="project-link" href="https://github.com/bunny182005" target="_blank">github ↗</a>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <span class="skill-cat">Languages</span>
+      <div class="skill-list">
+        <span class="tag">Python</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Java</span>
+        <span class="tag">SQL</span>
+      </div>
+
+      <span class="skill-cat">Full Stack</span>
+      <div class="skill-list">
+        <span class="tag">React.js</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">Express.js</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">Flask</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Tailwind CSS</span>
+        <span class="tag">HTML5</span>
+      </div>
+
+      <span class="skill-cat">AI / ML</span>
+      <div class="skill-list">
+        <span class="tag">TensorFlow</span>
+        <span class="tag">PyTorch</span>
+        <span class="tag">Hugging Face</span>
+        <span class="tag">LangChain</span>
+        <span class="tag">NLP</span>
+        <span class="tag">LLM Deployment</span>
+        <span class="tag">Vector Embeddings</span>
+        <span class="tag">Prompt Engineering</span>
+      </div>
+
+      <span class="skill-cat">Databases</span>
+      <div class="skill-list">
+        <span class="tag">MySQL</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">MongoDB</span>
+        <span class="tag">Firebase</span>
+        <span class="tag">ChromaDB</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-label">Certifications</div>
+    <ul class="cert-list">
+      <li>Supervised &amp; Unsupervised Machine Learning — Andrew Ng, Coursera</li>
+      <li>Generative AI Fundamentals — SmartBridge</li>
+    </ul>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>Medikonduru Manikanta Karthikeya</span>
+    <span>Vellore Institute of Technology · B.Tech CSE · 2027</span>
+  </footer>
+
+</body>
+</html>
